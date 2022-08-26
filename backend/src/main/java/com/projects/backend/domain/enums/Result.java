@@ -9,6 +9,10 @@ public enum Result {
 
 	private final Integer value;
 
+	public Integer getValue() {
+		return value;
+	}
+
 	Result(Integer value) {
 		this.value = value;
 	}

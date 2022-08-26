@@ -1,0 +1,8 @@
+<main>
+	<div class="container">
+		<div class="game">
+			<choice *ngIf="showAttempt" (selectedChoiceEmitter)="handleSelectedChoice($event)"></choice>
+			<result *ngIf="showResults" [gameResult]="gameResult" (playAgainEmitter)="handlePlayAgain()"></result>
+		</div>
+	</div>
+</main>

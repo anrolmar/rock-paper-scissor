@@ -15,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import com.projects.backend.domain.enums.Choice;
 import com.projects.backend.domain.enums.Result;
+import com.projects.backend.domain.model.GameResult;
 import com.projects.backend.services.GameServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,15 +32,18 @@ public class GameControllerTest {
 
 		// Given
 		Choice playerChoice = Choice.PAPER;
-		Result mockResult = Result.WIN;
-		when(gameServiceMock.performGame(playerChoice)).thenReturn(mockResult);
+		Result result = Result.WIN;
+		GameResult mockGameResult = new GameResult(playerChoice, Choice.ROCK, result);
+		when(gameServiceMock.performGame(playerChoice)).thenReturn(mockGameResult);
 
 		// When
-		Result result = gameController.performGame(playerChoice.name());
+		GameResult gameResult = gameController.performGame(playerChoice.name());
 
 		// Then
-		assertNotNull(result);
-		assertEquals(Result.WIN, result);
+		assertNotNull(gameResult);
+		assertEquals(gameResult.getPlayerChoice(), playerChoice);
+		assertEquals(gameResult.getComputerChoice(), Choice.ROCK);
+		assertEquals(gameResult.getResult(), result);
 
 	}
 

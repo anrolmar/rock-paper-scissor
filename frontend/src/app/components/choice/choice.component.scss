@@ -1,0 +1,40 @@
+// .container {
+//   animation-name: zoomResults;
+//   animation-duration: 0.5s;
+
+//   .choice {
+//     width: 42%;
+//     margin: auto;
+//     margin-top: auto;
+//     margin-top: auto;
+//     position: relative;
+//     margin-top: 24%;
+//   }
+// }
+.choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .choice-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    span {
+      font-size: 2vw;
+    }
+
+    .option {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      margin: 15px;
+    }
+  }
+}

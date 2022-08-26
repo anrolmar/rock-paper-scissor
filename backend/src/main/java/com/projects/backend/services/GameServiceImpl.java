@@ -4,12 +4,13 @@ import org.springframework.stereotype.Service;
 
 import com.projects.backend.domain.enums.Choice;
 import com.projects.backend.domain.enums.Result;
+import com.projects.backend.domain.model.GameResult;
 
 @Service
 public class GameServiceImpl implements GameService {
 
 	@Override
-	public Result performGame(Choice playerChoice) throws Exception {
+	public GameResult performGame(Choice playerChoice) throws Exception {
 
 		Choice computerChoice = getComputerChoice();
 
@@ -19,7 +20,8 @@ public class GameServiceImpl implements GameService {
 		} else if (computerChoice.isBetterThan(playerChoice)) {
 			result = Result.LOOSE;
 		}
-		return result;
+
+		return new GameResult(playerChoice, computerChoice, result);
 	}
 
 	private Choice getComputerChoice() {
