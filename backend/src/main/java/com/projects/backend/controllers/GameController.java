@@ -1,5 +1,7 @@
 package com.projects.backend.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,8 @@ public class GameController {
 	@Autowired
 	private GameServiceImpl gameService;
 
+	Logger logger = LoggerFactory.getLogger(GameController.class);
+
 	@PostMapping()
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public GameResult performGame(@RequestParam("choice") String choice) throws Exception {
@@ -28,6 +32,7 @@ public class GameController {
 			Choice playerChoice = Choice.valueOf(choice.toUpperCase());
 			return gameService.performGame(playerChoice);
 		} catch (IllegalArgumentException ex) {
+			logger.error(ex.getMessage());
 			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Option not allowed");
 		}
 	}
