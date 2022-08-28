@@ -1,10 +1,13 @@
 import { AppComponent } from './app.component';
+import { GameComponent } from './components/game/game.component';
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      imports: [HttpClientModule],
+      declarations: [AppComponent, GameComponent],
     }).compileComponents();
   });
 
